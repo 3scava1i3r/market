@@ -1,0 +1,54 @@
+.mycard{
+  margin-top: 30px;
+}
+
+.auth-card{
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 10px auto;
+  outline-style: none;
+}
+
+.input-field{
+  margin: 4px auto;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  outline-width: 0;
+}
+
+.vote{ 
+  padding: 20px 20px;
+}
+
+.vote h2{
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin: 0 !important;
+}
+.btn__vote{
+  display: flex;
+  justify-content: center;
+}
+
+.btn_v{
+  background-color: #15776a;
+  border: 1px solid;
+  border-radius: 2px;
+  width: auto;
+  height: 30px;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #575655;
+  cursor: pointer;
+}
+
+.home__image {
+  margin: 10px auto;
+}
+
+.banner__img{
+  display: flex;
+}

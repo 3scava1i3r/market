@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Link } from 'gatsby'
 import { useLocation } from '@reach/router'
 import loadable from '@loadable/component'
@@ -8,6 +9,8 @@ import Container from '../atoms/Container'
 import UserPreferences from './UserPreferences'
 import Badge from '../atoms/Badge'
 import Logo from '../atoms/Logo'
+import Vote from '../../pages/vote'
+import LogOut from '../../pages/logout'
 
 const Wallet = loadable(() => import('./Wallet'))
 
@@ -50,12 +53,27 @@ export default function Menu(): ReactElement {
               <MenuLink item={item} />
             </li>
           ))}
+
+          <li>
+              <Link className={styles.link} to="/vote">Vote</Link>
+          </li>
+
           <li>
             <Wallet />
           </li>
           <li>
             <UserPreferences />
           </li>
+          <li>
+            <Link className={styles.navigation} style={{fontWeight:"bold"}} to="/logout">Log Out</Link>
+          </li>
+          {/* <Router>
+            <Switch>
+              <Route path='/logout'>
+                  <LogOut />
+              </Route>
+            </Switch>
+          </Router> */}
         </ul>
       </Container>
     </nav>

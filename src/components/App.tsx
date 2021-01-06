@@ -3,10 +3,12 @@ import Footer from './organisms/Footer'
 import Header from './organisms/Header'
 import Styles from '../global/Styles'
 import styles from './App.module.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import { useOcean } from '@oceanprotocol/react'
 import Alert from './atoms/Alert'
 import { graphql, PageProps, useStaticQuery } from 'gatsby'
+import LogOut from '../pages/logout'
 
 const contentQuery = graphql`
   query AppQuery {
@@ -34,33 +36,61 @@ export default function App({
   const data = useStaticQuery(contentQuery)
   const purgatory = data.purgatory.edges[0].node.childContentJson.account
 
-  const { warning } = useSiteMetadata()
+
   const {
     isInPurgatory: isAccountInPurgatory,
     purgatoryData: accountPurgatory
   } = useOcean()
 
   return (
-    <Styles>
+    <Router>
       <div className={styles.app}>
-        <Header />
-
-        {(props as PageProps).uri === '/' && (
-          <Alert text={warning} state="info" />
-        )}
-
-        {isAccountInPurgatory && (
-          <Alert
-            title={purgatory.title}
-            badge={`Reason: ${accountPurgatory?.reason}`}
-            text={purgatory.description}
-            state="error"
+         <Switch>
+            <Route path="/logout">
+               <LogOut />
+            </Route>
+    
+          <Styles>
+             <div className={styles.app}>
+             <Header />
+             {isAccountInPurgatory && (
+             <Alert
+              title={purgatory.title}
+              badge={`Reason: ${accountPurgatory?.reason}`}
+              text={purgatory.description}
+              state="error"
           />
         )}
 
-        <main className={styles.main}>{children}</main>
-        <Footer />
+             <main className={styles.main}>{children}</main>
+            <Footer />
+            </div>
+          </Styles>
+         </Switch>
       </div>
-    </Styles>
+    </Router>
+
+
+    // <Styles>
+    //   <div className={styles.app}>
+    //     <Header />
+
+
+
+    //     {isAccountInPurgatory && (
+    //       <Alert
+    //         title={purgatory.title}
+    //         badge={`Reason: ${accountPurgatory?.reason}`}
+    //         text={purgatory.description}
+    //         state="error"
+    //       />
+    //     )}
+
+    //     <main className={styles.main}>{children}</main>
+    //     <Footer />
+    //   </div>
+    // </Styles>
   )
 }
+
+
